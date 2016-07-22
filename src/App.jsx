@@ -14,15 +14,14 @@ const colors = {
 
 class App extends Component {
   onReset = () => {
-    console.log("clicked to reset")
     this.props.appState.resetTimer();
   }
   render() {
     return (
-      <StyleRoot className="demo">
+      <StyleRoot className="tables">
         <Style rules={styles.global} />
-        <h2>Nested grids</h2>
-        <Grid cellWidth="1/2">
+        <h2>Comparator Tables</h2>
+        <Grid cellWidth="1">
           <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
             <Grid cellWidth="1/2" smallCellWidth="1">
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
@@ -40,19 +39,6 @@ class App extends Component {
               </Cell>
             </Grid>
           </Cell>
-          <Cell style={[styles.cell, styles.fluidCell, styles.darkRedCell]}>
-            <Grid cellWidth="1/3" smallCellWidth="1">
-              <Cell style={[styles.cell, styles.nestedCell, styles.redCell]}>
-                <p style={styles.cellText}>Lorem</p>
-              </Cell>
-              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <p style={styles.cellText}>ipsum</p>
-              </Cell>
-              <Cell style={[styles.cell, styles.nestedCell, styles.redCell]}>
-                <p style={styles.cellText}>dolor</p>
-              </Cell>
-            </Grid>
-          </Cell>
         </Grid>
       </StyleRoot>
     );
@@ -62,7 +48,7 @@ class App extends Component {
 const styles = {
   global: {
     body: {
-      fontFamily: "Whitney SSm A, Whitney SSm B, Helvetica Neue, Helvetica, Arial, sans-serif",
+      fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
       lineHeight: 1.5,
       margin: 0
     },
@@ -74,7 +60,7 @@ const styles = {
     marginBottom: "1rem",
     padding: "1rem",
     minWidth: "0px",
-    height: "150px"
+    height: "50%"
   },
   fluidCell: {
     height: "auto"
