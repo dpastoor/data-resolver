@@ -13,6 +13,21 @@ const colors = {
   black: "#2b303b"
 };
 
+const list1 = [
+  {column: "STUDYID", label: "Study ID", levels: "100-103", class: "labelled factor", SASformat: "", distinct_values: 1} ,
+  {column: "AGE", label: "Age of Participant in years", levels: "NA", class: "labelled integer", SASformat: "", distinct_values: 73} ,
+  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", class: "labelled factor", SASformat: "", distinct_values: 3} ,
+  {column: "TERMDT", label: "Study Termination date", levels: "NA", class: "labeled Date", SASformat: "YYMMDD10.", distinct_values: 750}
+];
+
+const list2 = [
+  {column: "STUDYID", label: "Study ID", levels: "100-103", class: "labelled factor", SASformat: "", distinct_values: 1} ,
+  {column: "AGE", label: "Age of Participant in years", levels: "NA", class: "labelled integer", SASformat: "", distinct_values: 73} ,
+  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", class: "labelled factor", SASformat: "", distinct_values: 3} ,
+  {column: "TERMDT", label: "Study Termination date", levels: "NA", class: "labeled Date", SASformat: "YYMMDD10.", distinct_values: 750}
+];
+const listKeys = ["column", "label", "levels"];
+
 class App extends Component {
   render() {
     console.log("rendering entire app")
@@ -29,7 +44,7 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable />
+                <CompareTable list={list1} listKeys={listKeys} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                   In Progress Resolution Component
@@ -42,8 +57,7 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <p style={styles.cellText}>
-                </p>
+                <CompareTable list={list2} listKeys={listKeys} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                 <p style={styles.cellText}> Another Cell</p>

@@ -7,14 +7,7 @@ import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import _ from 'lodash';
 // Table data as a array of objects
-const list = [
-  {column: "STUDYID", label: "Study ID", levels: "100-103", class: "labelled factor", SASformat: "", distinct_values: 1} ,
-  {column: "AGE", label: "Age of Participant in years", levels: "NA", class: "labelled integer", SASformat: "", distinct_values: 73} ,
-  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", class: "labelled factor", SASformat: "", distinct_values: 3} ,
-  {column: "TERMDT", label: "Study Termination date", levels: "NA", class: "labeled Date", SASformat: "YYMMDD10.", distinct_values: 750}
-];
 
-let listKeys = ["column", "label", "levels"];
 class CompareTable extends React.Component {
   constructor(props) {
     super(props)
@@ -42,6 +35,7 @@ class CompareTable extends React.Component {
     )
   }
   render() {
+    let {list, listKeys} = this.props;
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>
