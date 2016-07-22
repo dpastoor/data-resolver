@@ -23,7 +23,10 @@ class App extends Component {
         <h2>Comparator Tables</h2>
         <Grid cellWidth="1">
           <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
-            <Grid cellWidth="1/2" smallCellWidth="1">
+            <Grid
+              align="center"
+              cellWidth="1/2"
+            >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
                 <p style={styles.cellText}>
                 Seconds passed: {this.props.appState.timer}
@@ -57,6 +60,7 @@ const styles = {
     }
   },
   cell: {
+    boxSizing: "border-box",
     marginBottom: "1rem",
     padding: "1rem",
     minWidth: "0px",
