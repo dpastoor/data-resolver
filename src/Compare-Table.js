@@ -8,29 +8,18 @@ import 'react-virtualized/styles.css'; // only needs to be imported once
 import _ from 'lodash';
 // Table data as a array of objects
 const list = [
-  { name: 'Brian Vaughn', description: 'Software engineer, adsfasdfasdf asdf asdfasdf asdf asdf asdf asdf ' },
-  { name: '1asdf Vaughn', description: ' engineer' },
-  { name: '2asdf Vaughn', description: ' engineer' },
-  { name: '3asdf Vaughn', description: ' engineer' },
-  { name: '4asdf Vaughn', description: ' engineer' },
-  { name: '5asdf Vaughn', description: ' engineer' },
-  { name: '6asdf Vaughn', description: ' engineer' },
-  { name: '7asdf Vaughn', description: ' engineer' },
-  { name: '8asdf Vaughn', description: ' engineer' },
-  { name: '9asdf Vaughn', description: ' engineer' },
-  { name: '11asdf Vaughn', description: ' engineer' },
-  { name: '12asdf Vaughn', description: ' engineer' },
-  { name: '13asdf Vaughn', description: ' engineer' },
-  { name: '112asdf Vaughn', description: ' engineer' },
-  { name: '113asdf Vaughn', description: ' engineer' },
-  { name: '114Lorem Vaughn', description: 'Software ' }
+  {column: "STUDYID", label: "Study ID", levels: "100-103", class: "labelled factor", SASformat: "", distinct_values: 1} ,
+  {column: "AGE", label: "Age of Participant in years", levels: "NA", class: "labelled integer", SASformat: "", distinct_values: 73} ,
+  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", class: "labelled factor", SASformat: "", distinct_values: 3} ,
+  {column: "TERMDT", label: "Study Termination date", levels: "NA", class: "labeled Date", SASformat: "YYMMDD10.", distinct_values: 750}
 ];
 
-let listKeys = ["name", "description"];
+let listKeys = ["column", "label", "levels"];
 class CompareTable extends React.Component {
   constructor(props) {
     super(props)
     this._renderCells = this._renderCells.bind(this)
+    this.state = {selectedIndex: -1}
   }
   _renderCells({
     cellData,
@@ -42,6 +31,9 @@ class CompareTable extends React.Component {
     let bgColor;
     if (rowIndex % 2) {
       bgColor = "#d3d3d3";
+    }
+    if (rowIndex == this.state.selectedIndex) {
+      bgColor = "red"
     }
     return (
       <div style={!!bgColor ? {backgroundColor: bgColor} : {}}>
@@ -66,6 +58,9 @@ class CompareTable extends React.Component {
             onRowClick={({index}) => {
             console.log(index)
             console.log(list[index])
+            this.setState({
+            selectedIndex: index
+            })
             }}
           >
             {
