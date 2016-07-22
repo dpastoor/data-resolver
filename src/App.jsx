@@ -12,42 +12,43 @@ const colors = {
   black: "#2b303b"
 };
 
-const App = () => {
-  const { styles } = App;
-  return (
-    <StyleRoot className="demo">
-      <Style rules={styles.global} />
-      <h2>Nested grids</h2>
-      <Grid cellWidth="1/2">
-        <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
-          <Grid cellWidth="1/2" smallCellWidth="1">
-            <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-              <p style={styles.cellText}>Lorem</p>
-            </Cell>
-            <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
-              <p style={styles.cellText}>ipsum</p>
-            </Cell>
-          </Grid>
-        </Cell>
-        <Cell style={[styles.cell, styles.fluidCell, styles.darkRedCell]}>
-          <Grid cellWidth="1/3" smallCellWidth="1">
-            <Cell style={[styles.cell, styles.nestedCell, styles.redCell]}>
-              <p style={styles.cellText}>Lorem</p>
-            </Cell>
-            <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-              <p style={styles.cellText}>ipsum</p>
-            </Cell>
-            <Cell style={[styles.cell, styles.nestedCell, styles.redCell]}>
-              <p style={styles.cellText}>dolor</p>
-            </Cell>
-          </Grid>
-        </Cell>
-      </Grid>
-    </StyleRoot>
-  );
+class App extends Component {
+  render() {
+    return (
+      <StyleRoot className="demo">
+        <Style rules={styles.global} />
+        <h2>Nested grids</h2>
+        <Grid cellWidth="1/2">
+          <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
+            <Grid cellWidth="1/2" smallCellWidth="1">
+              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                <p style={styles.cellText}>Lorem</p>
+              </Cell>
+              <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
+                <p style={styles.cellText}>ipsum</p>
+              </Cell>
+            </Grid>
+          </Cell>
+          <Cell style={[styles.cell, styles.fluidCell, styles.darkRedCell]}>
+            <Grid cellWidth="1/3" smallCellWidth="1">
+              <Cell style={[styles.cell, styles.nestedCell, styles.redCell]}>
+                <p style={styles.cellText}>Lorem</p>
+              </Cell>
+              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                <p style={styles.cellText}>ipsum</p>
+              </Cell>
+              <Cell style={[styles.cell, styles.nestedCell, styles.redCell]}>
+                <p style={styles.cellText}>dolor</p>
+              </Cell>
+            </Grid>
+          </Cell>
+        </Grid>
+      </StyleRoot>
+    );
+  }
 };
 
-App.styles = {
+const styles = {
   global: {
     body: {
       fontFamily: "Whitney SSm A, Whitney SSm B, Helvetica Neue, Helvetica, Arial, sans-serif",
