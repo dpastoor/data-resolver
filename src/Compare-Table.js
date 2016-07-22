@@ -70,7 +70,10 @@ class CompareTable extends React.Component {
             rowGetter={
       ({ index }) => list[index]
     }
-            onRowClick={(index) => console.log(index)}
+            onRowClick={({index}) => {
+            console.log(index)
+            console.log(list[index])
+            }}
           >
             {
               _.map(listKeys,(key, i) => <FlexColumn
