@@ -13,7 +13,10 @@ const colors = {
 };
 
 class App extends Component {
-  onReset = () => this.props.appState.resetTimer();
+  onReset = () => {
+    console.log("clicked to reset")
+    this.props.appState.resetTimer();
+  }
   render() {
     return (
       <StyleRoot className="demo">
@@ -29,6 +32,11 @@ class App extends Component {
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                 <p style={styles.cellText}> Another Cell</p>
+                <button
+                  onClick={this.onReset}
+                >
+                 Reset Timer
+                </button>
               </Cell>
             </Grid>
           </Cell>
