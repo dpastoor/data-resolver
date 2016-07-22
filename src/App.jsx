@@ -22,6 +22,23 @@ class App extends Component {
         <Style rules={styles.global} />
         <h2>Comparator Tables</h2>
         <Grid cellWidth="1">
+          <Cell
+            style={[styles.cell, styles.fluidCell, styles.redCell]}
+          >
+            <Grid
+              align="center"
+              cellWidth="1/2"
+            >
+              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                <p style={styles.cellText}>
+                  Where Resolution Table Goes
+                </p>
+              </Cell>
+              <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
+                  In Progress Resolution Component
+              </Cell>
+            </Grid>
+          </Cell>
           <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
             <Grid
               align="center"
@@ -64,7 +81,7 @@ const styles = {
     marginBottom: "1rem",
     padding: "1rem",
     minWidth: "0px",
-    height: "50%"
+    minHeight: "40%"
   },
   fluidCell: {
     height: "auto"
