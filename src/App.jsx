@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
+import CompareTable from './Compare-Table'
 const colors = {
   formidared: "#FF4136",
   shade1: "#CC342B",
@@ -30,9 +31,7 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <p style={styles.cellText}>
-                  Where Resolution Table Goes
-                </p>
+                <CompareTable />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                   In Progress Resolution Component
@@ -96,7 +95,7 @@ const styles = {
     backgroundColor: colors.shade3
   },
   blackCell: {
-    backgroundColor: colors.black
+    backgroundColor: colors.white
   },
   image: {
     maxWidth: "100%",
