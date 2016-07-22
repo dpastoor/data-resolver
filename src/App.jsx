@@ -18,6 +18,7 @@ class App extends Component {
     this.props.appState.resetTimer();
   }
   render() {
+    console.log("rendering entire app")
     return (
       <StyleRoot className="tables">
         <Style rules={styles.global} />
@@ -45,7 +46,6 @@ class App extends Component {
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
                 <p style={styles.cellText}>
-                Seconds passed: {this.props.appState.timer}
                 </p>
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>

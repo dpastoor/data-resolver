@@ -5,7 +5,7 @@
 import React from 'react';
 import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
-
+import _ from 'lodash';
 // Table data as a array of objects
 const list = [
   { name: 'Brian Vaughn', description: 'Software engineer, adsfasdfasdf asdf asdfasdf asdf asdf asdf asdf ' },
@@ -33,7 +33,29 @@ const list = [
   { name: '114Lorem Vaughn', description: 'Software ' }
 ];
 
+let listKeys = ["name", "description"];
 class CompareTable extends React.Component {
+  constructor(props) {
+    super(props, context)
+    this._renderCells = this._renderCells.bind(this)
+  }
+  _renderCells({
+    cellData,
+    cellDataKey,
+    columnData,
+    rowData,
+    rowIndex
+  }) {
+    let bgColor;
+    if (rowIndex % 2) {
+      bgColor = "#d3d3d3";
+    }
+    return (
+      <div style={!!bgColor ? {backgroundColor: bgColor} : {}}>
+        {cellData}
+      </div>
+    )
+  }
   render() {
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
@@ -50,16 +72,17 @@ class CompareTable extends React.Component {
     }
             onRowClick={(index) => console.log(index)}
           >
-            <FlexColumn
-              width={width/4}
-              label='Name'
-              dataKey='name'
-            />
-            <FlexColumn
-              width={width}
-              label='Description'
-              dataKey='description'
-            />
+            {
+              _.map(listKeys,(key, i) => <FlexColumn
+                key={i} // bad practice just suppressing warning for now
+                width={width}
+                label={key}
+                dataKey={key}
+                cellRenderer = {this._renderCells}
+              />
+              )
+            }
+
           </FlexTable>
         )
         }
