@@ -3,7 +3,7 @@
  * Created by devin on 7/22/16.
  */
 import React from 'react';
-import { FlexTable, FlexColumn } from 'react-virtualized';
+import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 
 // Table data as a array of objects
@@ -36,28 +36,35 @@ const list = [
 class CompareTable extends React.Component {
   render() {
   return(
-    <FlexTable
-    width={300}
-    height={300}
-    headerHeight={20}
-    rowHeight={30}
-    rowCount={list.length}
-    rowGetter={
+    <div style={{width: "100%", minHeight: '40vh'}}>
+      <AutoSizer>
+        {({height, width}) => (
+          <FlexTable
+            width={width}
+            height={height}
+            headerHeight={20}
+            rowHeight={30}
+            rowCount={list.length}
+            rowGetter={
       ({ index }) => list[index]
     }
-    onRowClick={(index) => console.log(index)}
-    >
-    <FlexColumn
-      label='Name'
-      dataKey='name'
-      width={"50%"}
-        />
-        <FlexColumn
-      width={"50%"}
-      label='Description'
-      dataKey='description'
-        />
-    </FlexTable>
+            onRowClick={(index) => console.log(index)}
+          >
+            <FlexColumn
+              width={width/4}
+              label='Name'
+              dataKey='name'
+            />
+            <FlexColumn
+              width={width}
+              label='Description'
+              dataKey='description'
+            />
+          </FlexTable>
+        )
+        }
+      </AutoSizer>
+    </div>
   )}
 }
 
