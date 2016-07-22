@@ -21,13 +21,6 @@ const list = [
   { name: '11asdf Vaughn', description: ' engineer' },
   { name: '12asdf Vaughn', description: ' engineer' },
   { name: '13asdf Vaughn', description: ' engineer' },
-  { name: '14asdf Vaughn', description: ' engineer' },
-  { name: '15asdf Vaughn', description: ' engineer' },
-  { name: '16asdf Vaughn', description: ' engineer' },
-  { name: '17asdf Vaughn', description: ' engineer' },
-  { name: '18asdf Vaughn', description: ' engineer' },
-  { name: '19asdf Vaughn', description: ' engineer' },
-  { name: '111asdf Vaughn', description: ' engineer' },
   { name: '112asdf Vaughn', description: ' engineer' },
   { name: '113asdf Vaughn', description: ' engineer' },
   { name: '114Lorem Vaughn', description: 'Software ' }
@@ -36,7 +29,7 @@ const list = [
 let listKeys = ["name", "description"];
 class CompareTable extends React.Component {
   constructor(props) {
-    super(props, context)
+    super(props)
     this._renderCells = this._renderCells.bind(this)
   }
   _renderCells({
