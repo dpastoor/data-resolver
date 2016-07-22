@@ -13,6 +13,7 @@ const colors = {
 };
 
 class App extends Component {
+  onReset = () => this.props.appState.resetTimer();
   render() {
     return (
       <StyleRoot className="demo">
@@ -22,10 +23,12 @@ class App extends Component {
           <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
             <Grid cellWidth="1/2" smallCellWidth="1">
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <p style={styles.cellText}>Lorem</p>
+                <p style={styles.cellText}>
+                Seconds passed: {this.props.appState.timer}
+                </p>
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
-                <p style={styles.cellText}>ipsum</p>
+                <p style={styles.cellText}> Another Cell</p>
               </Cell>
             </Grid>
           </Cell>
