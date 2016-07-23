@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { toJS } from "mobx";
+import { toJS, autorun } from "mobx";
 import DevTools from 'mobx-react-devtools';
 import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
@@ -30,6 +30,7 @@ const list2 = [
 ];
 const listKeys = ["column", "label", "levels"];
 const tableStore = TableStore.fromJS(list1);
+autorun(() => console.log("selected column name: ", tableStore.selectedColumnName));
 class App extends Component {
   render() {
     console.log(tableStore)

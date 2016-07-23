@@ -53,7 +53,7 @@ class CompareTable extends React.Component {
             onRowClick={({index}) => {
             console.log(index)
             console.log(list[index]);
-
+            tableStore.selectedColumnIndex = index;
             this.setState({
             selectedIndex: index
             })
