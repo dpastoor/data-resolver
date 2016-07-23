@@ -6,6 +6,7 @@ import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
+import TableListStore from './stores/TableListStore'
 import ViewStore from './stores/ViewStore';
 import {ALL_COLUMNS, UNMATCHED_COLUMNS, MATCHED_COLUMNS} from './constants'
 const colors = {
@@ -34,6 +35,8 @@ const listKeys = ["column", "label", "levels"];
 const tableStore1 = TableStore.fromJS(list1);
 const tableStore2 = TableStore.fromJS(list2);
 const viewStore = new ViewStore();
+const tableListStore = new TableListStore();
+tableListStore.addTables(tableStore1, tableStore2);
 autorun(() => {
   console.log("selected column name for ts1: ", tableStore1.selectedColumnName);
   console.log("selected column name for ts2: ", tableStore2.selectedColumnName);
@@ -77,12 +80,15 @@ class App extends Component {
               align="center"
               cellWidth="1/2"
             >
-              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore1} listKeys={listKeys} viewStore={viewStore} />
-              </Cell>
-              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore2} listKeys={listKeys} viewStore={viewStore} />
-              </Cell>
+              {
+               tableListStore.tables.map((tbl,i) => {
+                 return(
+                   <Cell key={i} style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                     <CompareTable tableStore={tbl} listKeys={listKeys} viewStore={viewStore} />
+                   </Cell>
+                 )
+               })
+              }
             </Grid>
           </Cell>
         </Grid>
