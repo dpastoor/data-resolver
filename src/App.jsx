@@ -29,13 +29,14 @@ const list2 = [
   {column: "TERMDT", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
 const listKeys = ["column", "label", "levels"];
-const tableStore = TableStore.fromJS(list1);
-autorun(() => console.log("selected column name: ", tableStore.selectedColumnName));
+const tableStore1 = TableStore.fromJS(list1);
+const tableStore2 = TableStore.fromJS(list2);
+autorun(() => {
+  console.log("selected column name for ts1: ", tableStore1.selectedColumnName);
+  console.log("selected column name for ts2: ", tableStore2.selectedColumnName);
+});
 class App extends Component {
   render() {
-    console.log(tableStore)
-    console.log("---toJS tablestore----")
-    console.log(toJS(tableStore));
     return (
       <StyleRoot className="tables">
         <Style rules={styles.global} />
@@ -61,10 +62,10 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore} listKeys={listKeys} />
+                <CompareTable tableStore={tableStore1} listKeys={listKeys} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore} listKeys={listKeys} />
+                <CompareTable tableStore={tableStore2} listKeys={listKeys} />
               </Cell>
             </Grid>
           </Cell>
