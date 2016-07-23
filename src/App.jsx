@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { toJS } from "mobx";
 import DevTools from 'mobx-react-devtools';
 import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
 import CompareTable from './Compare-Table'
+import TableStore from './stores/TableStore'
 const colors = {
   formidared: "#FF4136",
   shade1: "#CC342B",
@@ -14,23 +16,25 @@ const colors = {
 };
 
 const list1 = [
-  {column: "STUDYID", label: "Study ID", levels: "100-103", class: "labelled factor", SASformat: "", distinct_values: 1} ,
-  {column: "AGE", label: "Age of Participant in years", levels: "NA", class: "labelled integer", SASformat: "", distinct_values: 73} ,
-  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", class: "labelled factor", SASformat: "", distinct_values: 3} ,
-  {column: "TERMDT", label: "Study Termination date", levels: "NA", class: "labeled Date", SASformat: "YYMMDD10.", distinct_values: 750}
+  {column: "STUDYID", label: "Study ID", levels: "100-103", className: "labelled factor", SASformat: "", distinctValues: 1} ,
+  {column: "AGE", label: "Age of Participant in years", levels: "NA", className: "labelled integer", SASformat: "", distinctValues: 73} ,
+  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", className: "labelled factor", SASformat: "", distinctValues: 3} ,
+  {column: "TERMDT", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
 
 const list2 = [
-  {column: "STUDYID", label: "Study ID", levels: "100-103", class: "labelled factor", SASformat: "", distinct_values: 1} ,
-  {column: "AGE", label: "Age of Participant in years", levels: "NA", class: "labelled integer", SASformat: "", distinct_values: 73} ,
-  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", class: "labelled factor", SASformat: "", distinct_values: 3} ,
-  {column: "TERMDT", label: "Study Termination date", levels: "NA", class: "labeled Date", SASformat: "YYMMDD10.", distinct_values: 750}
+  {column: "STUDYID", label: "Study ID", levels: "100-103", className: "labelled factor", SASformat: "", distinctValues: 1} ,
+  {column: "AGE", label: "Age of Participant in years", levels: "NA", className: "labelled integer", SASformat: "", distinctValues: 73} ,
+  {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", className: "labelled factor", SASformat: "", distinctValues: 3} ,
+  {column: "TERMDT", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
 const listKeys = ["column", "label", "levels"];
-
+const tableStore = TableStore.fromJS(list1);
 class App extends Component {
   render() {
-    console.log("rendering entire app")
+    console.log(tableStore)
+    console.log("---toJS tablestore----")
+    console.log(toJS(tableStore));
     return (
       <StyleRoot className="tables">
         <Style rules={styles.global} />
@@ -44,7 +48,7 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable list={list1} listKeys={listKeys} />
+                <CompareTable tableStore={tableStore} listKeys={listKeys} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                   In Progress Resolution Component
@@ -57,7 +61,7 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable list={list2} listKeys={listKeys} />
+                <CompareTable tableStore={tableStore} listKeys={listKeys} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                 <p style={styles.cellText}> Another Cell</p>

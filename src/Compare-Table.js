@@ -35,7 +35,8 @@ class CompareTable extends React.Component {
     )
   }
   render() {
-    let {list, listKeys} = this.props;
+    let {tableStore, listKeys} = this.props;
+    let list = tableStore.colDetails;
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>
@@ -51,7 +52,8 @@ class CompareTable extends React.Component {
     }
             onRowClick={({index}) => {
             console.log(index)
-            console.log(list[index])
+            console.log(list[index]);
+
             this.setState({
             selectedIndex: index
             })
