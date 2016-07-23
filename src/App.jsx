@@ -4,6 +4,9 @@ import { toJS, autorun } from "mobx";
 import DevTools from 'mobx-react-devtools';
 import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {List} from 'material-ui'
+import SelectedColumn from './components/SelectedColumn'
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
 import TableListStore from './stores/TableListStore'
@@ -38,31 +41,44 @@ const viewStore = new ViewStore();
 const tableListStore = new TableListStore();
 tableListStore.addTables(tableStore1, tableStore2);
 autorun(() => {
-  console.log("selected column name for ts1: ", tableStore1.selectedColumnName);
-  console.log("selected column name for ts2: ", tableStore2.selectedColumnName);
+  console.log("selected column name for ts1: ", tableStore1.selectedColumnDetails.column);
+  console.log("selected column name for ts2: ", tableStore2.selectedColumnDetails.column);
   console.log("View Currently showing", viewStore.colFilter);
 });
 
 class App extends Component {
   render() {
     return (
-      <StyleRoot className="tables">
-        <Style rules={styles.global} />
-        <h2>Comparator Tables</h2>
-        <Grid cellWidth="1">
-          <Cell
-            style={[styles.cell, styles.fluidCell, styles.redCell]}
-          >
-            <Grid
-              align="center"
-              cellWidth="1/2"
-            >
-              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-              </Cell>
-              <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
-                <button
+     <MuiThemeProvider>
+       <StyleRoot className="tables">
+         <Style rules={styles.global} />
+         <h2>Comparator Tables</h2>
+         <Grid cellWidth="1">
+           <Cell
+             style={[styles.cell, styles.fluidCell, styles.redCell]}
+           >
+             <Grid
+               align="center"
+               cellWidth="1/2"
+             >
+               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+               </Cell>
+               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
+                 <Grid
+                  cellWidth="1/2"
+                 >
+                  <Cell>
+                    <List>
+                      {
+                        tableListStore.tables.map(tbl => <SelectedColumn columnDetails={tbl.selectedColumnDetails} />)
+                      }
+                    </List>
+                  </Cell>
+                   <Cell>
 
-                  onClick={() => {
+                     <button
+
+                       onClick={() => {
                     if(viewStore.colFilter === ALL_COLUMNS) {
                       viewStore.colFilter = MATCHED_COLUMNS;
                     } else {
@@ -70,36 +86,38 @@ class App extends Component {
                       viewStore.colFilter = ALL_COLUMNS;
                     }
                   }}
-                > COLUMN VISIBILITY </button>
-                <br/>
-                <button
-
-                  onClick={() => {
+                     > COLUMN VISIBILITY
+                     </button>
+                     <button
+                       onClick={() => {
                   tableListStore.addTable(tableStore1);
                   }}
-                > Add Tbl1 Copy</button>
-                  In Progress Resolution Component
-              </Cell>
-            </Grid>
-          </Cell>
-          <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
-            <Grid
-              align="center"
-              cellWidth="1/2"
-            >
-              {
-               tableListStore.tables.map((tbl,i) => {
-                 return(
-                   <Cell key={i} style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                     <CompareTable tableStore={tbl} listKeys={listKeys} viewStore={viewStore} />
+                     > Add Tbl1 Copy</button>
+                     In Progress Resolution Component
                    </Cell>
-                 )
-               })
-              }
-            </Grid>
-          </Cell>
-        </Grid>
-      </StyleRoot>
+                 </Grid>
+               </Cell>
+             </Grid>
+           </Cell>
+           <Cell style={[styles.cell, styles.fluidCell, styles.redCell]}>
+             <Grid
+               align="center"
+               cellWidth="1/2"
+             >
+               {
+                 tableListStore.tables.map((tbl,i) => {
+                   return(
+                     <Cell key={i} style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                       <CompareTable tableStore={tbl} listKeys={listKeys} viewStore={viewStore} />
+                     </Cell>
+                   )
+                 })
+               }
+             </Grid>
+           </Cell>
+         </Grid>
+       </StyleRoot>
+     </MuiThemeProvider>
     );
   }
 };

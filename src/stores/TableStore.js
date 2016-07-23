@@ -33,11 +33,11 @@ export default class TableStore {
       0
     )
   }
-  @computed get selectedColumnName() {
+  @computed get selectedColumnDetails() {
     if (this.selectedColumnIndex < 0) {
-      return ""
+      return {};
     }
-    return this.colDetails[this.selectedColumnIndex].column;
+    return this.colDetails[this.selectedColumnIndex];
   }
   @computed get matchedCount() {
     return this.colDetails.length - this.notMatchedCount;

@@ -3,7 +3,9 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import AppState from './AppState';
 import App from './App';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
+injectTapEventPlugin();
 const appState = new AppState();
 
 render(

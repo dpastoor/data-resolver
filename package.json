@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "lodash": "^4.13.1",
+    "material-ui": "^0.15.2",
     "mobx": "^2.2.2",
     "mobx-react": "^3.3.1",
     "mobx-react-devtools": "^4.2.0",
@@ -41,6 +42,7 @@
     "react": "^15.1.0",
     "react-addons-shallow-compare": "^15.2.1",
     "react-dom": "^15.1.0",
+    "react-tap-event-plugin": "^1.0.0",
     "react-virtualized": "^7.12.3"
   }
 }
