@@ -12,7 +12,6 @@ class CompareTable extends React.Component {
   constructor(props) {
     super(props)
     this._renderCells = this._renderCells.bind(this)
-    this.state = {selectedIndex: -1}
   }
   _renderCells({
     cellData,
@@ -25,7 +24,7 @@ class CompareTable extends React.Component {
     if (rowIndex % 2) {
       bgColor = "#d3d3d3";
     }
-    if (rowIndex == this.state.selectedIndex) {
+    if (rowIndex == this.props.tableStore.selectedColumnIndex) {
       bgColor = "red"
     }
     return (

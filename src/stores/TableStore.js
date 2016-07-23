@@ -7,8 +7,8 @@ import XptRowModel from '../models/XptRowModel'
 export default class TableStore {
   @observable colDetails = [];
   @observable selectedColumnIndex;
-  constructor(selectedColumn = null) {
-    this.selectedColumn = selectedColumn;
+  constructor(selectedColumnIndex = -1) {
+    this.selectedColumnIndex = selectedColumnIndex;
   }
   @computed get notMatchedCount() {
     return this.colDetails.reduce(
@@ -17,7 +17,7 @@ export default class TableStore {
     )
   }
   @computed get selectedColumnName() {
-    if (!this.selectedColumnIndex) {
+    if (this.selectedColumnIndex < 0) {
       return ""
     }
     return this.colDetails[this.selectedColumnIndex].column;

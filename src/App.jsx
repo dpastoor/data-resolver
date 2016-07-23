@@ -49,7 +49,6 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore} listKeys={listKeys} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                   In Progress Resolution Component
@@ -64,8 +63,8 @@ class App extends Component {
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
                 <CompareTable tableStore={tableStore} listKeys={listKeys} />
               </Cell>
-              <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
-                <p style={styles.cellText}> Another Cell</p>
+              <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                <CompareTable tableStore={tableStore} listKeys={listKeys} />
               </Cell>
             </Grid>
           </Cell>
