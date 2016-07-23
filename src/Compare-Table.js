@@ -3,12 +3,14 @@
  * Created by devin on 7/22/16.
  */
 import React from 'react';
+import { observer } from 'mobx-react';
 import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import _ from 'lodash';
 import { MATCHED_COLUMNS, UNMATCHED_COLUMNS } from './constants'
 // Table data as a array of objects
 
+@observer
 class CompareTable extends React.Component {
   constructor(props) {
     super(props)
@@ -50,6 +52,8 @@ class CompareTable extends React.Component {
   render() {
     let {tableStore, listKeys} = this.props;
     let list = this.getVisibleColumns();
+    console.log("view filter:", this.props.viewStore.colFilter);
+    console.log(list);
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>

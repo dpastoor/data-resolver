@@ -7,6 +7,7 @@ import Radium, {Style, StyleRoot } from 'radium';
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
 import ViewStore from './stores/ViewStore';
+import {ALL_COLUMNS, UNMATCHED_COLUMNS, MATCHED_COLUMNS} from './constants'
 const colors = {
   formidared: "#FF4136",
   shade1: "#CC342B",
@@ -32,12 +33,13 @@ const list2 = [
 const listKeys = ["column", "label", "levels"];
 const tableStore1 = TableStore.fromJS(list1);
 const tableStore2 = TableStore.fromJS(list2);
+const viewStore = new ViewStore();
 autorun(() => {
   console.log("selected column name for ts1: ", tableStore1.selectedColumnName);
   console.log("selected column name for ts2: ", tableStore2.selectedColumnName);
+  console.log("View Currently showing", viewStore.colFilter);
 });
 
-const viewStore = new ViewStore();
 class App extends Component {
   render() {
     return (
@@ -55,6 +57,17 @@ class App extends Component {
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
+                <button
+
+                  onClick={() => {
+                    if(viewStore.colFilter === ALL_COLUMNS) {
+                      viewStore.colFilter = MATCHED_COLUMNS;
+                    } else {
+                      console.log("in else block")
+                      viewStore.colFilter = ALL_COLUMNS;
+                    }
+                  }}
+                > COLUMN VISIBILITY </button>
                   In Progress Resolution Component
               </Cell>
             </Grid>
