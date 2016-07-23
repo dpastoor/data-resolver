@@ -54,6 +54,7 @@ class CompareTable extends React.Component {
     let list = this.getVisibleColumns();
     console.log("view filter:", this.props.viewStore.colFilter);
     console.log(list);
+    console.log(tableStore.selectedColumnIndex);
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>
@@ -71,9 +72,6 @@ class CompareTable extends React.Component {
             console.log(index)
             console.log(list[index]);
             tableStore.selectedColumnIndex = index;
-            this.setState({
-            selectedIndex: index
-            })
             }}
           >
             {

@@ -71,6 +71,13 @@ class App extends Component {
                     }
                   }}
                 > COLUMN VISIBILITY </button>
+                <br/>
+                <button
+
+                  onClick={() => {
+                  tableListStore.addTable(tableStore1);
+                  }}
+                > Add Tbl1 Copy</button>
                   In Progress Resolution Component
               </Cell>
             </Grid>
