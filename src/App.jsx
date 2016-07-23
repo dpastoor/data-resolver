@@ -6,6 +6,7 @@ import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
+import ViewStore from './stores/ViewStore';
 const colors = {
   formidared: "#FF4136",
   shade1: "#CC342B",
@@ -35,6 +36,8 @@ autorun(() => {
   console.log("selected column name for ts1: ", tableStore1.selectedColumnName);
   console.log("selected column name for ts2: ", tableStore2.selectedColumnName);
 });
+
+const viewStore = new ViewStore();
 class App extends Component {
   render() {
     return (
@@ -62,10 +65,10 @@ class App extends Component {
               cellWidth="1/2"
             >
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore1} listKeys={listKeys} />
+                <CompareTable tableStore={tableStore1} listKeys={listKeys} viewStore={viewStore} />
               </Cell>
               <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
-                <CompareTable tableStore={tableStore2} listKeys={listKeys} />
+                <CompareTable tableStore={tableStore2} listKeys={listKeys} viewStore={viewStore} />
               </Cell>
             </Grid>
           </Cell>

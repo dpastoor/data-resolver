@@ -6,6 +6,7 @@ import React from 'react';
 import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import _ from 'lodash';
+import { MATCHED_COLUMNS, UNMATCHED_COLUMNS } from './constants'
 // Table data as a array of objects
 
 class CompareTable extends React.Component {
@@ -33,9 +34,22 @@ class CompareTable extends React.Component {
       </div>
     )
   }
+
+  getVisibleColumns() {
+    return this.props.tableStore.colDetails.filter(row => {
+      switch(this.props.viewStore.colFilter) {
+        case MATCHED_COLUMNS:
+          return row.matched;
+        case UNMATCHED_COLUMNS:
+          return !row.matched;
+        default:
+          return true;
+      }
+    });
+  }
   render() {
     let {tableStore, listKeys} = this.props;
-    let list = tableStore.colDetails;
+    let list = this.getVisibleColumns();
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>

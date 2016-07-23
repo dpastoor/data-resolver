@@ -10,6 +10,7 @@ export default class TableListStore {
   @action addTable(tbl) {
     this.tables.push(tbl)
   }
+  @computed
   static fromJS(...array) {
     const tableListStore = new TableListStore();
     tableListStore.tables = array.map(row => TableStore.fromJS(row));
