@@ -30,7 +30,7 @@ const list1 = [
 
 const list2 = [
   {column: "STUDYID", label: "Study ID", levels: "100-103", className: "labelled factor", SASformat: "", distinctValues: 1} ,
-  {column: "AGE", label: "Age of Participant in years", levels: "NA", className: "labelled integer", SASformat: "", distinctValues: 73} ,
+  {column: "AGEYRS", label: "Age of Participant in years", levels: "NA", className: "labelled integer", SASformat: "", distinctValues: 73} ,
   {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", className: "labelled factor", SASformat: "", distinctValues: 3} ,
   {column: "TERMDT", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
