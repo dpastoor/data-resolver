@@ -83,9 +83,9 @@ class App extends Component {
                    >
                      <Grid
                        cellWidth="1"
+                       align="center"
                      >
                       <Cell>
-                        In Progress Resolution Component
                         {tableListStore.allTablesHaveSelectedColumn ?
                           <div>All Tables Have selection</div> :
                           <div> At least one table missing selection </div>
