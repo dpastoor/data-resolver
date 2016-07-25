@@ -94,6 +94,10 @@ class App extends Component {
                   }}
                      > Add Tbl1 Copy</button>
                      In Progress Resolution Component
+                     {tableListStore.allTablesHaveSelectedColumn ?
+                       <div>All Tables Have selection</div> :
+                       <div> At least one table missing selection </div>
+                     }
                    </Cell>
                  </Grid>
                </Cell>

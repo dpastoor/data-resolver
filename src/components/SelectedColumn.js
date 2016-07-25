@@ -19,7 +19,11 @@ const SelectedColumn = ({columnDetails}) => (
       showExpandableButton={true}
     />
     <CardText expandable={true}>
-      more details
+        <p>
+            Levels: {columnDetails.levels}
+            <br/>
+            Distinct Values: {columnDetails.distinctValues}
+        </p>
     </CardText>
   </Card>
 );
