@@ -75,24 +75,6 @@ class App extends Component {
                     </List>
                   </Cell>
                    <Cell>
-
-                     <button
-
-                       onClick={() => {
-                    if(viewStore.colFilter === ALL_COLUMNS) {
-                      viewStore.colFilter = MATCHED_COLUMNS;
-                    } else {
-                      console.log("in else block")
-                      viewStore.colFilter = ALL_COLUMNS;
-                    }
-                  }}
-                     > COLUMN VISIBILITY
-                     </button>
-                     <button
-                       onClick={() => {
-                  tableListStore.addTable(tableStore1);
-                  }}
-                     > Add Tbl1 Copy</button>
                      In Progress Resolution Component
                      {tableListStore.allTablesHaveSelectedColumn ?
                        <div>All Tables Have selection</div> :
