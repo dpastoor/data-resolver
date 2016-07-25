@@ -5,8 +5,9 @@ import DevTools from 'mobx-react-devtools';
 import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {List} from 'material-ui'
-import SelectedColumn from './components/SelectedColumn'
+import {List} from 'material-ui';
+import SelectedColumn from './components/SelectedColumn';
+import RenameColumnForm from './components/RenameColumnForm';
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
 import TableListStore from './stores/TableListStore'
@@ -65,21 +66,36 @@ class App extends Component {
                </Cell>
                <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                  <Grid
+                   align="center"
                   cellWidth="1/2"
                  >
-                  <Cell>
+                  <Cell
+                    style={[styles.cell, styles.nestedCell]}
+                  >
                     <List>
                       {
                         tableListStore.tables.map(tbl => <SelectedColumn columnDetails={tbl.selectedColumnDetails} />)
                       }
                     </List>
                   </Cell>
-                   <Cell>
-                     In Progress Resolution Component
-                     {tableListStore.allTablesHaveSelectedColumn ?
-                       <div>All Tables Have selection</div> :
-                       <div> At least one table missing selection </div>
-                     }
+                   <Cell
+                     style={[styles.cell, styles.nestedCell]}
+                   >
+                     <Grid
+                       cellWidth="1"
+                     >
+                      <Cell>
+                        In Progress Resolution Component
+                        {tableListStore.allTablesHaveSelectedColumn ?
+                          <div>All Tables Have selection</div> :
+                          <div> At least one table missing selection </div>
+                        }
+                      </Cell>
+                       <Cell>
+                         <RenameColumnForm />
+                       </Cell>
+                     </Grid>
+
                    </Cell>
                  </Grid>
                </Cell>
