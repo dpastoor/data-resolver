@@ -9,6 +9,7 @@ import {List, RaisedButton} from 'material-ui';
 import SelectedColumn from './components/SelectedColumn';
 import RenameColumnForm from './components/RenameColumnForm';
 import MatchedTable from './components/Matched-Table';
+import SelectStatementsForR from './components/SelectStatementsForR';
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
 import TableListStore from './stores/TableListStore'
@@ -69,6 +70,7 @@ class App extends Component {
                                }
                           }}
          > Set filter criteria </RaisedButton>
+         <SelectStatementsForR tableListStore={tableListStore} />
          <Grid cellWidth="1">
            <Cell
              style={[styles.cell, styles.fluidCell, styles.redCell]}

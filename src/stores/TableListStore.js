@@ -52,9 +52,9 @@ export default class TableListStore {
   @action renameAllSelected(newName) {
     this.tables.forEach(tbl => tbl.renameSelectedColumn(newName))
   }
-  
-  @computed get matchedColumns() {
-    let matchedRows = this.tables.map((table, i) => {
+
+  @computed get matchedAndRenamedColumnsPerTable() {
+    return this.tables.map((table, i) => {
       return table.colDetails
         .filter(row => row.matched)
         .reduce((howMatched, row) => {
@@ -69,6 +69,10 @@ export default class TableListStore {
           return howMatched;
         }, {renamed: [], matched: []})
     });
+  }
+  @computed get matchedColumns() {
+    let matchedRows = this.matchedAndRenamedColumnsPerTable;
+    console.log(JSON.stringify(matchedRows))
 
     // for now test opposite what will want
     let renamedRows = matchedRows.map(tbl => tbl.renamed.sort((a, b) => {

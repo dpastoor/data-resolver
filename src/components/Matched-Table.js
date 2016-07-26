@@ -33,9 +33,6 @@ class MatchedTable extends React.Component {
     )
   }
 
-  _getMatchedColumns() {
-
-  }
   render() {
     let {table, colNames} = this.props.tableListStore.matchedColumns;
   return(
