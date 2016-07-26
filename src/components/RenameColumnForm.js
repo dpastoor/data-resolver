@@ -65,7 +65,7 @@ export default class RenameColumnForm extends React.Component {
 
   render() {
     let {paperStyle, switchStyle, submitStyle } = this.styles;
-    let { wordsError, numericError, urlError } = this.errorMessages;
+    let { wordsError } = this.errorMessages;
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
@@ -77,7 +77,6 @@ export default class RenameColumnForm extends React.Component {
           >
             <FormsyText
               name="name"
-              validations="isWords"
               validationError={wordsError}
               required
               hintText="Normalized column name?"

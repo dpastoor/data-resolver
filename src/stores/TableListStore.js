@@ -29,9 +29,8 @@ export default class TableListStore {
     unique_names.forEach(name => {
       let inTable = this.tables.reduce((contains, table) => {
         if (contains) {
-          // not sure if need to stringify or not
+          // TODO: not sure if need to turn to JS or not
           let cols = toJS(table.colDetails);
-          console.log( `for: ${name}  the output is ${JSON.stringify(cols.filter(r => r.column == name).length)}`);
           return cols.filter(r => r.column == name).length == 1;
         }
         return false
@@ -40,24 +39,15 @@ export default class TableListStore {
         containedInAll.push(name)
       }
     });
-    transaction(() => {
-      containedInAll.forEach((match) => {
-        transaction(() => {
-          this.tables.forEach(table => {
-            transaction(() => {
-              table.colDetails.forEach(row => {
-                if (row.column == match) {
-                  console.log("matched on row", row.matched);
-                  row.matched = true;
-                }
-              });
-            })
-          })
-        });
+    containedInAll.forEach((match) => {
+        this.tables.forEach(table => {
+            table.colDetails.forEach(row => {
+              if (row.column == match) {
+                row.matched = true;
+              }
+        })
       });
-
-    })
-    return 3;
+    });
   }
 
   static fromJS(...array) {

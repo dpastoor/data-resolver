@@ -41,16 +41,11 @@ const tableStore2 = TableStore.fromJS(list2);
 const viewStore = new ViewStore();
 const tableListStore = new TableListStore();
 tableListStore.addTables(tableStore1, tableStore2);
-autorun(() => {
-  console.log("selected column name for ts1: ", tableStore1.selectedColumnDetails.column);
-  console.log("selected column name for ts2: ", tableStore2.selectedColumnDetails.column);
-  console.log("View Currently showing", viewStore.colFilter);
-});
 
 autorun(() => {
   console.log("currently dealing with: ",  tableListStore.tables.length, " tables");
   tableListStore.deriveMatches()
-})
+});
 
 class App extends Component {
   render() {

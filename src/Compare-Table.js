@@ -52,9 +52,6 @@ class CompareTable extends React.Component {
   render() {
     let {tableStore, listKeys} = this.props;
     let list = this.getVisibleColumns();
-    console.log("view filter:", this.props.viewStore.colFilter);
-    console.log(list);
-    console.log(tableStore.selectedColumnIndex);
   return(
     <div style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>

@@ -9,9 +9,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 const SelectedColumn = ({columnDetails}) => (
   <Card>
-    {console.log("column details")}
-    {console.log(toJS(columnDetails))}
-    {console.log(columnDetails.column)}
     <CardHeader
       title={columnDetails.column}
       subtitle={columnDetails.label}
