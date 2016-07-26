@@ -115,7 +115,7 @@ class App extends Component {
                         }
                       </Cell>
                        <Cell>
-                         <RenameColumnForm />
+                         <RenameColumnForm tableListStore={tableListStore} />
                        </Cell>
                      </Grid>
 

@@ -13,9 +13,9 @@ export default class TableStore {
 
   @action renameSelectedColumn(newName) {
     if (this.selectedColumnIndex > 0) {
-      colDetails[selectedColumnIndex].newName = newName;
+      this.colDetails[this.selectedColumnIndex].newName = newName;
       // should only be renaming column if matching
-      colDetails[selectedColumnIndex].matched = true;
+      this.colDetails[this.selectedColumnIndex].matched = true;
     }
   }
   @action clearAllNewNames() {

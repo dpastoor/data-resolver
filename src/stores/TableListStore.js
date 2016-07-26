@@ -49,7 +49,9 @@ export default class TableListStore {
       });
     });
   }
-
+  @action renameAllSelected(newName) {
+    this.tables.forEach(tbl => tbl.renameSelectedColumn(newName))
+  }
   static fromJS(...array) {
     const tableListStore = new TableListStore();
     tableListStore.tables = array.map(row => TableStore.fromJS(row));

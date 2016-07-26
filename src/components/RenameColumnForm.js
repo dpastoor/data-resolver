@@ -56,7 +56,7 @@ export default class RenameColumnForm extends React.Component {
   submitForm(data) {
     console.log("-----form data------")
     console.log(data)
-
+    this.props.tableListStore.renameAllSelected(data.name)
   }
 
   notifyFormError(data) {
