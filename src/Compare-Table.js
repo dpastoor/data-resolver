@@ -5,6 +5,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { FlexTable, FlexColumn, AutoSizer } from 'react-virtualized';
+import { Paper } from 'material-ui';
 import 'react-virtualized/styles.css'; // only needs to be imported once
 import _ from 'lodash';
 import { MATCHED_COLUMNS, UNMATCHED_COLUMNS } from './constants'
@@ -28,7 +29,7 @@ class CompareTable extends React.Component {
       bgColor = "#d3d3d3";
     }
     if (rowData.column == this.props.tableStore.selectedColumnDetails.column) {
-      bgColor = "red"
+      bgColor = "#FF5722"
     }
     return (
       <div style={!!bgColor ? {backgroundColor: bgColor} : {}}>
@@ -53,7 +54,7 @@ class CompareTable extends React.Component {
     let {tableStore, listKeys} = this.props;
     let list = this.getVisibleColumns();
   return(
-    <div style={{width: "100%", minHeight: '40vh'}}>
+    <Paper style={{width: "100%", minHeight: '40vh'}}>
       <AutoSizer>
         {({height, width}) => (
           <FlexTable
@@ -86,7 +87,7 @@ class CompareTable extends React.Component {
         )
         }
       </AutoSizer>
-    </div>
+    </Paper>
   )}
 }
 

@@ -17,9 +17,9 @@ import ViewStore from './stores/ViewStore';
 import {ALL_COLUMNS, UNMATCHED_COLUMNS, MATCHED_COLUMNS} from './constants'
 const colors = {
   formidared: "#FF4136",
-  shade1: "#CC342B",
-  shade2: "#B22D26",
-  shade3: "#992720",
+  shade1: "26C6DA",
+  shade2: "#E1BEE7",
+  shade3: "EEEEEE",
   white: "#fff",
   black: "#2b303b"
 };
@@ -134,7 +134,7 @@ class App extends Component {
                {
                  tableListStore.tables.map((tbl,i) => {
                    return(
-                     <Cell key={i} style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                     <Cell key={i} style={[styles.cell, styles.nestedCell]}>
                        <CompareTable tableStore={tbl} listKeys={listKeys} viewStore={viewStore} />
                      </Cell>
                    )
