@@ -51,7 +51,7 @@ class MatchedTable extends React.Component {
     })
 
     // for now test opposite what will want
-    let renamedRows = matchedRows.map(tbl => tbl.matched.sort((a, b) => {
+    let renamedRows = matchedRows.map(tbl => tbl.renamed.sort((a, b) => {
       if (a.column > b.column) {
         return -1;
       }
