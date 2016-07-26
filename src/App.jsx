@@ -62,7 +62,7 @@ class App extends Component {
          <RaisedButton
            onClick={() => {
                                if(viewStore.colFilter === ALL_COLUMNS) {
-                                  viewStore.colFilter = MATCHED_COLUMNS;
+                                  viewStore.colFilter = UNMATCHED_COLUMNS;
                                } else {
                                   viewStore.colFilter = ALL_COLUMNS;
                                }
