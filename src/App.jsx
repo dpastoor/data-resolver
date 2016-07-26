@@ -5,7 +5,7 @@ import DevTools from 'mobx-react-devtools';
 import {Grid, Cell} from 'radium-grid';
 import Radium, {Style, StyleRoot } from 'radium';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {List} from 'material-ui';
+import {List, RaisedButton} from 'material-ui';
 import SelectedColumn from './components/SelectedColumn';
 import RenameColumnForm from './components/RenameColumnForm';
 import CompareTable from './Compare-Table'
@@ -33,7 +33,7 @@ const list2 = [
   {column: "STUDYID", label: "Study ID", levels: "100-103", className: "labelled factor", SASformat: "", distinctValues: 1} ,
   {column: "AGEYRS", label: "Age of Participant in years", levels: "NA", className: "labelled integer", SASformat: "", distinctValues: 73} ,
   {column: "TRTGRP", label: "treatment group ", levels: "Placebo, DRUGX100, DRUGX200", className: "labelled factor", SASformat: "", distinctValues: 3} ,
-  {column: "TERMDT", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
+  {column: "TERMDT2", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
 const listKeys = ["column", "label", "levels"];
 const tableStore1 = TableStore.fromJS(list1);
@@ -47,13 +47,32 @@ autorun(() => {
   console.log("View Currently showing", viewStore.colFilter);
 });
 
+autorun(() => {
+  console.log("currently dealing with: ",  tableListStore.tables.length, " tables");
+  tableListStore.deriveMatches()
+})
+
 class App extends Component {
   render() {
     return (
      <MuiThemeProvider>
        <StyleRoot className="tables">
          <Style rules={styles.global} />
-         <h2>Comparator Tables</h2>
+         Customizations:
+           <RaisedButton
+             onClick={() => {
+                            return tableListStore.addTable(TableStore.fromJS(list1));
+                          }}
+           > add table </RaisedButton>
+         <RaisedButton
+           onClick={() => {
+                               if(viewStore.colFilter === ALL_COLUMNS) {
+                                  viewStore.colFilter = MATCHED_COLUMNS;
+                               } else {
+                                  viewStore.colFilter = ALL_COLUMNS;
+                               }
+                          }}
+         > Set filter criteria </RaisedButton>
          <Grid cellWidth="1">
            <Cell
              style={[styles.cell, styles.fluidCell, styles.redCell]}
@@ -63,6 +82,7 @@ class App extends Component {
                cellWidth="1/2"
              >
                <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
+                 Number of tables: {tableListStore.tables.length}
                </Cell>
                <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                  <Grid
@@ -74,7 +94,13 @@ class App extends Component {
                   >
                     <List>
                       {
-                        tableListStore.tables.map(tbl => <SelectedColumn columnDetails={tbl.selectedColumnDetails} />)
+                        tableListStore.tables.map((tbl, i) => {
+                          if (tbl.selectedColumnDetails.column) {
+                           return <div>
+                              Table: {i+1} <SelectedColumn columnDetails={tbl.selectedColumnDetails} />
+                             </div>
+                          }
+                        })
                       }
                     </List>
                   </Cell>
