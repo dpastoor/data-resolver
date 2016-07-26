@@ -8,6 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {List, RaisedButton} from 'material-ui';
 import SelectedColumn from './components/SelectedColumn';
 import RenameColumnForm from './components/RenameColumnForm';
+import MatchedTable from './components/Matched-Table';
 import CompareTable from './Compare-Table'
 import TableStore from './stores/TableStore'
 import TableListStore from './stores/TableListStore'
@@ -78,6 +79,7 @@ class App extends Component {
              >
                <Cell style={[styles.cell, styles.nestedCell, styles.blackCell]}>
                  Number of tables: {tableListStore.tables.length}
+                 <MatchedTable tableListStore={tableListStore} listKeys={listKeys} />
                </Cell>
                <Cell style={[styles.cell, styles.nestedCell, styles.darkRedCell]}>
                  <Grid
