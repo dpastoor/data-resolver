@@ -13,19 +13,18 @@ export default class TableStore {
 
   @action renameSelectedColumn(newName) {
     if (this.selectedColumnIndex > 0) {
-      // TODO: maybe bundle these in a transaction?
       colDetails[selectedColumnIndex].newName = newName;
       // should only be renaming column if matching
       colDetails[selectedColumnIndex].matched = true;
     }
   }
-  @action clearAllNames() {
-    transaction(() => {
+  @action clearAllNewNames() {
       this.colDetails.forEach(row => {
-        row.newName = "";
-        row.matched = false;
-      })
-    })
+        if (row.newName != "") {
+          row.newName = "";
+          row.matched = false;
+        }
+    });
   }
   @action setSelectedColumnByName(colName) {
     let index = _.findIndex(this.colDetails, {column: colName});
