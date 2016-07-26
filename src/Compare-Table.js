@@ -27,7 +27,7 @@ class CompareTable extends React.Component {
     if (rowIndex % 2) {
       bgColor = "#d3d3d3";
     }
-    if (rowIndex == this.props.tableStore.selectedColumnIndex) {
+    if (rowData.column == this.props.tableStore.selectedColumnDetails.column) {
       bgColor = "red"
     }
     return (
@@ -68,7 +68,7 @@ class CompareTable extends React.Component {
             onRowClick={({index}) => {
             console.log(index)
             console.log(list[index]);
-            tableStore.selectedColumnIndex = index;
+            tableStore.setSelectedColumnByName(list[index].column);
             }}
           >
             {

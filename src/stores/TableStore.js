@@ -27,6 +27,10 @@ export default class TableStore {
       })
     })
   }
+  @action setSelectedColumnByName(colName) {
+    let index = _.findIndex(this.colDetails, {column: colName});
+    this.selectedColumnIndex = index;
+  }
   @computed get notMatchedCount() {
     return this.colDetails.reduce(
       (sum, row) => sum + (row.matched ? 0 : 1),
@@ -42,7 +46,6 @@ export default class TableStore {
   @computed get matchedCount() {
     return this.colDetails.length - this.notMatchedCount;
   }
-
   static fromJS(array) {
     const tableStore = new TableStore();
     tableStore.colDetails = array.map(row => XptRowModel.fromJS(row));
