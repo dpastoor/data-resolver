@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { observer } from 'mobx-react';
-
+import SelectStatementDialogView from './SelectStatementDialogView'
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
  * in this example [FlatButtons](/#/components/flat-button).
@@ -33,8 +33,6 @@ export default class SelectStatementsForR extends React.Component {
       />
     ];
     const data = this.props.tableListStore.matchedAndRenamedColumnsPerTable[0];
-    const matched = data.matched.map(r => r.column);
-    const renamed = data.renamed.map(r => `${r.newName} = ${r.column}`);
     return (
       <div>
         <RaisedButton label="Derived Select Statements" onTouchTap={this.handleOpen} />
@@ -45,13 +43,7 @@ export default class SelectStatementsForR extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <p>
-            select( <br />
-          {matched.map(m => ( <li style={{listStyleType: "none"}}>{m}, </li>))}
-            {/* right now trailing comma still there, can add that logic later */}
-          {renamed.map(m => ( <li style={{listStyleType: "none"}}>{m}, </li>))}
-            )
-          </p>
+          <SelectStatementDialogView table={data} tableName="testName" />
         </Dialog>
       </div>
     );
