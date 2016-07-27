@@ -5,7 +5,7 @@ const SelectStatementDialogView = ({table, tableName}) => {
     const renamed = table.renamed.map(r => `${r.newName} = ${r.column}`);
     return (
       <div>
-        Table: {!!tableName ? tableName : ""}
+        Table: {tableName}
           <p>
             select( <br />
           {matched.map(m => ( <li style={{listStyleType: "none"}}>{m}, </li>))}
@@ -16,5 +16,14 @@ const SelectStatementDialogView = ({table, tableName}) => {
       </div>
     );
 }
-
+SelectStatementDialogView.propTypes = {
+  table: React.PropTypes.shape({
+    matched: React.PropTypes.array,
+    renamed: React.PropTypes.array
+  }).isRequired,
+  tableName: React.PropTypes.string
+};
+SelectStatementDialogView.defaultProps = {
+  tableName: 1
+};
 export default SelectStatementDialogView

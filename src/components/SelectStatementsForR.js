@@ -43,7 +43,7 @@ export default class SelectStatementsForR extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <SelectStatementDialogView table={data} tableName="testName" />
+          <SelectStatementDialogView table={data} />
         </Dialog>
       </div>
     );
