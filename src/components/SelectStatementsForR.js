@@ -32,7 +32,7 @@ export default class SelectStatementsForR extends React.Component {
         onTouchTap={this.handleClose}
       />
     ];
-    const data = this.props.tableListStore.matchedAndRenamedColumnsPerTable[0];
+    const data = this.props.tableListStore.matchedAndRenamedColumnsPerTable;
     return (
       <div>
         <RaisedButton label="Derived Select Statements" onTouchTap={this.handleOpen} />
@@ -43,7 +43,7 @@ export default class SelectStatementsForR extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <SelectStatementDialogView table={data} />
+          {data.map((table, i) => <SelectStatementDialogView table={table} tableName={i+1} key ={i} />)}
         </Dialog>
       </div>
     );

@@ -21,7 +21,7 @@ SelectStatementDialogView.propTypes = {
     matched: React.PropTypes.array,
     renamed: React.PropTypes.array
   }).isRequired,
-  tableName: React.PropTypes.string
+  tableName: React.PropTypes.oneOf([React.PropTypes.string, React.PropTypes.number])
 };
 SelectStatementDialogView.defaultProps = {
   tableName: 1
