@@ -15,6 +15,7 @@ import TableStore from './stores/TableStore'
 import TableListStore from './stores/TableListStore'
 import ViewStore from './stores/ViewStore';
 import {ALL_COLUMNS, UNMATCHED_COLUMNS, MATCHED_COLUMNS} from './constants'
+import {tbl1, tbl2, tbl3 } from './fixtures/fixture1'
 const colors = {
   formidared: "#FF4136",
   shade1: "26C6DA",
@@ -38,8 +39,8 @@ const list2 = [
   {column: "TERMDT2", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
 const listKeys = ["column", "label", "levels"];
-const tableStore1 = TableStore.fromJS(list1);
-const tableStore2 = TableStore.fromJS(list2);
+const tableStore1 = TableStore.fromJS(tbl1);
+const tableStore2 = TableStore.fromJS(tbl2);
 const viewStore = new ViewStore();
 const tableListStore = new TableListStore();
 tableListStore.addTables(tableStore1, tableStore2);
