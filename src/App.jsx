@@ -39,8 +39,16 @@ const list2 = [
   {column: "TERMDT2", label: "Study Termination date", levels: "NA", className: "labeled Date", SASformat: "YYMMDD10.", distinctValues: 750}
 ];
 const listKeys = ["column", "label", "levels"];
-const tableStore1 = TableStore.fromJS(tbl1);
-const tableStore2 = TableStore.fromJS(tbl2);
+const tableStore1 = TableStore.fromJS(tbl1.sort((a, b) => {
+  if (a.column > b.column) return 1
+  if (a.column < b.column) return -1
+  return 0
+}));
+const tableStore2 = TableStore.fromJS(tbl2.sort((a, b) => {
+  if (a.column > b.column) return 1
+  if (a.column < b.column) return -1
+  return 0
+}));
 const viewStore = new ViewStore();
 const tableListStore = new TableListStore();
 tableListStore.addTables(tableStore1, tableStore2);
