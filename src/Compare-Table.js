@@ -28,6 +28,9 @@ class CompareTable extends React.Component {
     if (rowIndex % 2) {
       bgColor = "#d3d3d3";
     }
+    if (rowData.matched) {
+      bgColor = "#BA68C8"
+    }
     if (rowData.column == this.props.tableStore.selectedColumnDetails.column) {
       bgColor = "#FF5722"
     }
