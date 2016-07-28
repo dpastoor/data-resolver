@@ -49,9 +49,14 @@ const tableStore2 = TableStore.fromJS(tbl2.sort((a, b) => {
   if (a.column < b.column) return -1
   return 0
 }));
+const tableStore3 = TableStore.fromJS(tbl3.sort((a, b) => {
+  if (a.column > b.column) return 1
+  if (a.column < b.column) return -1
+  return 0
+}));
 const viewStore = new ViewStore();
 const tableListStore = new TableListStore();
-tableListStore.addTables(tableStore1, tableStore2);
+tableListStore.addTables(tableStore1, tableStore2, tableStore3);
 
 autorun(() => {
   console.log("currently dealing with: ",  tableListStore.tables.length, " tables");
