@@ -43,7 +43,19 @@ export default class SelectStatementsForR extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          {data.map((table, i) => <SelectStatementDialogView table={table} tableName={i+1} key ={i} />)}
+          <div
+            style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center"}}
+          >
+            {data.map((table, i) => (<div
+               style={{padding: "2vw", display: "inline"}}
+            >
+              <SelectStatementDialogView table={table} tableName={i+1} key ={i} />
+            </div>))}
+          </div
+          >
         </Dialog>
       </div>
     );
